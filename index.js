@@ -16,15 +16,15 @@ var Foo = function (_React$Component) {
     }
 
     _createClass(Foo, [{
-        key: 'render',
+        key: "render",
         //Classe di base dove è visibile il passaggio dei dati tramite i Props...
         value: function render() {
             return React.createElement(
-                'p',
+                "p",
                 null,
-                'Questa \xE8 la classe Foo, ',
+                "Questa \xE8 la classe Foo, ",
                 this.props.name,
-                '!'
+                "!"
             ); // {this.props.name} serve proprio come parametro..
         }
     }]);
@@ -45,7 +45,7 @@ var Orologio = function (_React$Component2) {
     }
 
     _createClass(Orologio, [{
-        key: 'componentDidMount',
+        key: "componentDidMount",
         value: function componentDidMount() {
             var _this3 = this;
 
@@ -55,7 +55,7 @@ var Orologio = function (_React$Component2) {
             }, 1000);
         }
     }, {
-        key: 'tick',
+        key: "tick",
         value: function tick() {
             //Faccio in modo che si aggiorni ogni secondo..
             this.setState({
@@ -63,23 +63,23 @@ var Orologio = function (_React$Component2) {
             });
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return (// Renderizzo l'orologio e il suo stato..
                 React.createElement(
-                    'div',
+                    "div",
                     null,
                     React.createElement(
-                        'p',
+                        "p",
                         null,
-                        'Questo si aggiorna da solo!..'
+                        "Questo si aggiorna da solo!.."
                     ),
                     React.createElement(
-                        'h2',
+                        "h2",
                         null,
-                        'Orario: ',
+                        "Orario: ",
                         this.state.date.toLocaleTimeString(),
-                        '.'
+                        "."
                     )
                 )
             );
@@ -89,24 +89,86 @@ var Orologio = function (_React$Component2) {
     return Orologio;
 }(React.Component);
 
-var Interruttore = function (_React$Component3) {
-    _inherits(Interruttore, _React$Component3);
+var Textes = ["Testo1", "Testo2", "Testo3"];
+var index = 0;
+
+var ChangingText = function (_React$Component3) {
+    _inherits(ChangingText, _React$Component3);
+
+    function ChangingText(props) {
+        _classCallCheck(this, ChangingText);
+
+        var _this4 = _possibleConstructorReturn(this, (ChangingText.__proto__ || Object.getPrototypeOf(ChangingText)).call(this, props));
+
+        _this4.state = { default: "Testo di Default", index: index };
+        return _this4;
+    }
+
+    _createClass(ChangingText, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this5 = this;
+
+            this.TextID = setInterval(function () {
+                return _this5.tick();
+            }, 1000);
+        }
+    }, {
+        key: "tick",
+        value: function tick() {
+            if (index > 2) {
+                index = 0;
+            }
+            this.setState({
+                default: Textes[index],
+                index: index++
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return (// Renderizzo l'orologio e il suo stato..
+                React.createElement(
+                    "div",
+                    null,
+                    React.createElement(
+                        "p",
+                        null,
+                        "Testo cangiante:"
+                    ),
+                    React.createElement(
+                        "h2",
+                        null,
+                        "Testo mostrato: ",
+                        this.state.default,
+                        "."
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ChangingText;
+}(React.Component);
+
+var Interruttore = function (_React$Component4) {
+    _inherits(Interruttore, _React$Component4);
 
     function Interruttore(props) {
         _classCallCheck(this, Interruttore);
 
         // Passo i props
-        var _this4 = _possibleConstructorReturn(this, (Interruttore.__proto__ || Object.getPrototypeOf(Interruttore)).call(this, props)); // Passiamo il costruttore..
+        var _this6 = _possibleConstructorReturn(this, (Interruttore.__proto__ || Object.getPrototypeOf(Interruttore)).call(this, props)); // Passiamo il costruttore..
 
 
-        _this4.state = { acceso: true }; //Indico lo stato dell'interruttore...
+        _this6.state = { acceso: true }; //Indico lo stato dell'interruttore...
 
-        _this4.handleClick = _this4.handleClick.bind(_this4); // Connetto il metodo HandleClick alla funzione
-        return _this4;
+        _this6.handleClick = _this6.handleClick.bind(_this6); // Connetto il metodo HandleClick alla funzione
+        return _this6;
     }
 
     _createClass(Interruttore, [{
-        key: 'handleClick',
+        key: "handleClick",
         value: function handleClick() {
             //Dichiaro la funzione per il click
             this.setState(function (prevState) {
@@ -116,14 +178,14 @@ var Interruttore = function (_React$Component3) {
             });
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             //Renderizzo poi il tutto trasformandolo in HTML
             return React.createElement(
-                'button',
+                "button",
                 { onClick: this.handleClick },
                 React.createElement(
-                    'p',
+                    "p",
                     null,
                     this.state.acceso ? 'Acceso' : 'Spento'
                 )
@@ -138,12 +200,12 @@ function Blog(props) {
     //Classe Blog
     var sidebar = //Sidebar dove si trovano i punti della lista
     React.createElement(
-        'ul',
+        "ul",
         null,
         props.articoli.map(function (articolo) {
             return (//Faccio in modo che mostrino il titolo e l'ID dell'articolo
                 React.createElement(
-                    'li',
+                    "li",
                     { key: articolo.id },
                     articolo.titolo
                 )
@@ -153,15 +215,15 @@ function Blog(props) {
     var contenuto = props.articoli.map(function (articolo) {
         return (//Faccio in modo che venga visualizzato il contenuto...
             React.createElement(
-                'div',
+                "div",
                 { key: articolo.id },
                 React.createElement(
-                    'h3',
+                    "h3",
                     null,
                     articolo.titolo
                 ),
                 React.createElement(
-                    'p',
+                    "p",
                     null,
                     articolo.testo
                 )
@@ -170,10 +232,10 @@ function Blog(props) {
     });
     return (//Ritorno poi la struttura in HTML
         React.createElement(
-            'div',
+            "div",
             null,
             sidebar,
-            React.createElement('hr', null),
+            React.createElement("hr", null),
             contenuto
         )
     );
@@ -182,47 +244,47 @@ function Blog(props) {
 var articoli = [//Dichiaro i diversi articoli
 { id: 1, titolo: 'Ciao da React.js!', testo: 'Ecco come fare diversi articoli come nei Blog!' }, { id: 2, titolo: 'Non e Difficile!', testo: 'Con poche righe di codice, puoi fare una struttura complessa!' }];
 
-var FormDiProva = function (_React$Component4) {
-    _inherits(FormDiProva, _React$Component4);
+var FormDiProva = function (_React$Component5) {
+    _inherits(FormDiProva, _React$Component5);
 
     //Form di Prova dove si immetterà un "Nome"
     function FormDiProva(props) {
         _classCallCheck(this, FormDiProva);
 
-        var _this5 = _possibleConstructorReturn(this, (FormDiProva.__proto__ || Object.getPrototypeOf(FormDiProva)).call(this, props));
+        var _this7 = _possibleConstructorReturn(this, (FormDiProva.__proto__ || Object.getPrototypeOf(FormDiProva)).call(this, props));
 
-        _this5.state = { value: '' };
+        _this7.state = { value: '' };
 
-        _this5.handleChange = _this5.handleChange.bind(_this5);
-        _this5.handleSubmit = _this5.handleSubmit.bind(_this5); //Connetto il metodo di Submit e di Cambio alla funzione principale
-        return _this5;
+        _this7.handleChange = _this7.handleChange.bind(_this7);
+        _this7.handleSubmit = _this7.handleSubmit.bind(_this7); //Connetto il metodo di Submit e di Cambio alla funzione principale
+        return _this7;
     }
 
     _createClass(FormDiProva, [{
-        key: 'handleChange',
+        key: "handleChange",
         value: function handleChange(event) {
             this.setState({ value: event.target.value }); //Creo la funzione handleChange dove viene messo il valore 
         }
     }, {
-        key: 'handleSubmit',
+        key: "handleSubmit",
         value: function handleSubmit(event) {
             alert('E\' stato inserito un nome: ' + this.state.value); //Creo la funzione che segnala quando viene immesso un valore..
             event.preventDefault();
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             //Renderizzo poi tutto in HTML
             return React.createElement(
-                'form',
+                "form",
                 { onSubmit: this.handleSubmit },
                 React.createElement(
-                    'label',
+                    "label",
                     null,
-                    'Nome:',
-                    React.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleChange })
+                    "Nome:",
+                    React.createElement("input", { type: "text", value: this.state.value, onChange: this.handleChange })
                 ),
-                React.createElement('input', { type: 'submit', value: 'Submit' })
+                React.createElement("input", { type: "submit", value: "Submit" })
             );
         }
     }]);
@@ -230,50 +292,50 @@ var FormDiProva = function (_React$Component4) {
     return FormDiProva;
 }(React.Component);
 
-var FormArea = function (_React$Component5) {
-    _inherits(FormArea, _React$Component5);
+var FormArea = function (_React$Component6) {
+    _inherits(FormArea, _React$Component6);
 
     // Form che funge da TextArea...
     function FormArea(props) {
         _classCallCheck(this, FormArea);
 
-        var _this6 = _possibleConstructorReturn(this, (FormArea.__proto__ || Object.getPrototypeOf(FormArea)).call(this, props));
+        var _this8 = _possibleConstructorReturn(this, (FormArea.__proto__ || Object.getPrototypeOf(FormArea)).call(this, props));
 
-        _this6.state = {
+        _this8.state = {
             value: 'Wow... Questa è una TextArea creata con React.js!'
         };
 
-        _this6.handleChange = _this6.handleChange.bind(_this6);
-        _this6.handleSubmit = _this6.handleSubmit.bind(_this6);
-        return _this6;
+        _this8.handleChange = _this8.handleChange.bind(_this8);
+        _this8.handleSubmit = _this8.handleSubmit.bind(_this8);
+        return _this8;
     }
 
     _createClass(FormArea, [{
-        key: 'handleChange',
+        key: "handleChange",
         value: function handleChange(event) {
             this.setState({
                 value: event.target.value
             });
         }
     }, {
-        key: 'handleSubmit',
+        key: "handleSubmit",
         value: function handleSubmit(event) {
             alert('Un tema è stato inviato: ' + this.state.value);
             event.preventDefault();
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'form',
+                "form",
                 { onSubmit: this.handleSubmit },
                 React.createElement(
-                    'label',
+                    "label",
                     null,
-                    'Tema:',
-                    React.createElement('textarea', { value: this.state.value, onChange: this.handleChange })
+                    "Tema:",
+                    React.createElement("textarea", { value: this.state.value, onChange: this.handleChange })
                 ),
-                React.createElement('input', { type: 'submit', value: 'Submit' })
+                React.createElement("input", { type: "submit", value: "Submit" })
             );
         }
     }]);
@@ -283,53 +345,54 @@ var FormArea = function (_React$Component5) {
 
 ReactDOM.render( //Infine renderizzo tutto quanto, dal primo all'ultimo elemento.. <div> Viene usato per renderizzare più elementi..
 React.createElement(
-    'div',
+    "div",
     null,
     React.createElement(
-        'h1',
+        "h1",
         null,
-        'Queste sono diverse funzioni di React!'
+        "Queste sono diverse funzioni di React!"
     ),
     React.createElement(
-        'h2',
+        "h2",
         null,
-        '1) Utilizzo dei Component:'
+        "1) Utilizzo dei Component:"
     ),
-    React.createElement(Foo, { name: 'Woosh' }),
+    React.createElement(Foo, { name: "Woosh" }),
     React.createElement(
-        'h2',
+        "h2",
         null,
-        '2) Utilizzo degli handleClick:'
+        "2) Utilizzo degli handleClick:"
     ),
     React.createElement(Interruttore, null),
     React.createElement(
-        'p',
+        "p",
         null,
-        'Infatti cambier\xE0 ad ogni click da Acceso a Spento!'
+        "Infatti cambier\xE0 ad ogni click da Acceso a Spento!"
     ),
     React.createElement(
-        'h2',
+        "h2",
         null,
-        '3) Creare liste istantanee:'
+        "3) Creare liste istantanee:"
     ),
     React.createElement(Blog, { articoli: articoli }),
     React.createElement(
-        'h2',
+        "h2",
         null,
-        '4) Creare delle Forms!'
+        "4) Creare delle Forms!"
     ),
     React.createElement(FormDiProva, null),
     React.createElement(
-        'h2',
+        "h2",
         null,
-        '5) Creare delle TextArea!'
+        "5) Creare delle TextArea!"
     ),
     React.createElement(FormArea, null),
     React.createElement(
-        'h2',
+        "h2",
         null,
-        '6) Aggiornare in tempo reale il testo...'
+        "6) Aggiornare in tempo reale il testo..."
     ),
-    React.createElement(Orologio, null)
+    React.createElement(Orologio, null),
+    React.createElement(ChangingText, null)
 ), document.getElementById('root') // Si finisce indicando a quale parte della pagina HTML aggiungere il contenuto.
 );

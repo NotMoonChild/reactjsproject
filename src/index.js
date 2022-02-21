@@ -1,3 +1,5 @@
+
+
 class Foo extends React.Component { //Classe di base dove è visibile il passaggio dei dati tramite i Props...
     render() { 
         return <p>Questa è la classe Foo, {this.props.name}!</p>; // {this.props.name} serve proprio come parametro..
@@ -32,6 +34,42 @@ class Orologio extends React.Component{
         )
     }
 }
+
+const Textes = ["Testo1","Testo2","Testo3"];
+var index = 0;
+
+class ChangingText extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {default: "Testo di Default", index: index}
+    }
+
+        componentDidMount() {
+            this.TextID = setInterval(
+                () => this.tick(),
+                1000
+            );
+        }
+
+        tick() {
+            if(index>2){
+                index=0;
+            }
+            this.setState({
+                default: Textes[index],
+                index: index++,
+            });
+        }
+
+        render() {
+            return( // Renderizzo l'orologio e il suo stato..
+                <div>
+                    <p>Testo cangiante:</p>
+                    <h2>Testo mostrato: {this.state.default}.</h2> 
+                </div>
+            )
+        }
+    }
 
 class Interruttore extends React.Component {
     constructor(props){ // Passiamo il costruttore..
@@ -172,6 +210,7 @@ ReactDOM.render( //Infine renderizzo tutto quanto, dal primo all'ultimo elemento
         <FormArea />
         <h2>6) Aggiornare in tempo reale il testo...</h2>
         <Orologio />
+        <ChangingText />
         </div>
 
     ,document.getElementById('root') // Si finisce indicando a quale parte della pagina HTML aggiungere il contenuto.
